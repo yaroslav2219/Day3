@@ -30,6 +30,12 @@ data:function() {
             this.date = firstDayOfMonth.toISOString().substring(0, 10);
             this.date2 = lastDayOfMonth.toISOString().substring(0, 10);
         },
+        logout() {
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+
+        this.$router.push('./login');
+    },
         get:function() {
             var self = this;
             var data = self.parent.toFormData(self.parent.formData);
@@ -196,6 +202,7 @@ template: `
 </div>
 `
 };  
+
 
 
 
