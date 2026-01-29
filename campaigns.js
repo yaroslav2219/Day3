@@ -87,8 +87,33 @@ template: `
 
     <div class="wrapper campaigns-wrap">
 
-        <!-- TOP BAR -->
         <div class="campaigns-top">
+
+<nav class="top-nav">
+    <div class="nav-left">
+        <a href="#" class="nav-btn logout" @click.prevent="logout">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
+    </div>
+
+    <div class="nav-center">
+        <a href="#/users"
+           class="nav-link"
+           :class="{ active: $route.path.includes('users') }">
+            Users
+        </a>
+
+        <a href="#/campaigns"
+           class="nav-link"
+           :class="{ active: $route.path.includes('campaigns') }">
+            Campaigns
+        </a>
+    </div>
+
+    <div class="nav-right">
+        <img src="img/logo.png" alt="Logo" class="logo">
+    </div>
+</nav>
 
             <div class="top-left">
                 <button class="btn btn-small" @click="$refs.new && ($refs.new.active=1)">
@@ -171,6 +196,7 @@ template: `
 </div>
 `
 };  
+
 
 
 
