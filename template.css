@@ -281,4 +281,71 @@ input:focus {
     color: #c00;
 }
 
+.top-nav {
+    height: 60px;
+    background: #1e1e2f;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    color: #fff;
+}
+
+.nav-left,
+.nav-center,
+.nav-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.nav-left {
+    justify-content: flex-start;
+}
+
+.nav-center {
+    justify-content: center;
+    gap: 30px;
+}
+
+.nav-right {
+    justify-content: flex-end;
+}
+
+.nav-link {
+    color: #bbb;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    transition: .2s;
+}
+
+.nav-link:hover {
+    background: rgba(255,255,255,.1);
+    color: #fff;
+}
+
+.nav-link.active {
+    background: #4f46e5;
+    color: #fff;
+}
+
+.nav-btn.logout {
+    color: #ffb4b4;
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.nav-btn.logout:hover {
+    color: #ff5c5c;
+}
+
+.logo {
+    height: 34px;
+    object-fit: contain;
+}
+
 
