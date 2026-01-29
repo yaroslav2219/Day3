@@ -89,25 +89,33 @@ return new Promise(function(resolve, reject){
 });
         }
     },
-    template: `
-    <div class="alertMsg" v-if="alert">
+  template: `
+<div>
+
+  <div class="alertMsg" v-if="alert">
     <div class="wrapper al">
-    <i class="fas fa-check-cicle"></i> {{alert}}
+      <i class="fas fa-check-circle"></i> {{ alert }}
     </div>
-    </div>
-    <div class="successMsg" v-if="success">
+  </div>
+
+  <div class="successMsg" v-if="success">
     <div class="wrapper al">
-     <i class="fas fa-check-cicle"></i> {{success}}
-     </div>
-     </div>
-     <popup ref="confirm" :title="confirmTitle">
-     <div class=" al">
-     <i class="fas fa-info-circle"></i> {{confirm}}
-     <div class="botBtns">
-     <a class="btnS" href="#" @click.prevent="code=1">Yes</a>
-     <a class="btnS" href="#" @click.prevent="code=2">No</a>
-     </div>
-     </div>
-     </popup>
-    `
+      <i class="fas fa-check-circle"></i> {{ success }}
+    </div>
+  </div>
+
+  <popup ref="confirm" :title="confirmTitle">
+    <div class="al">
+      <i class="fas fa-info-circle"></i> {{ confirm }}
+      <div class="botBtns">
+        <a class="btnS" href="#" @click.prevent="code = 1">Yes</a>
+        <a class="btnS" href="#" @click.prevent="code = 2">No</a>
+      </div>
+    </div>
+  </popup>
+
+</div>
+`
+
+
 };
