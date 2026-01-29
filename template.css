@@ -261,4 +261,24 @@ input:focus {
     font-size: 13px;
 }
 
+.actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.actions a {
+    color: #777;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+.actions a:hover {
+    color: #000;
+}
+
+.actions a:last-child:hover {
+    color: #c00;
+}
+
 
