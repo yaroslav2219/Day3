@@ -108,7 +108,6 @@ template: `
 
         </div>
 
-        <!-- TABLE -->
         <div class="table campaigns-table" v-if="data.items.length">
 
             <table>
@@ -127,11 +126,23 @@ template: `
                 <tbody>
                     <tr v-for="item in data.items" :key="item.id">
 
-                        <td class="actions">
-                            <a href="#" @click.prevent="parent.formData=item; del()">
-                                <i class="fas fa-trash-alt"></i>
-                            </a>
-                        </td>
+                       <td class="actions">
+    <a href="#" title="Statistics"
+       @click.prevent="$router.push('/campaign/' + item.id)">
+        <i class="fas fa-chart-line"></i>
+    </a>
+
+    <a href="#" title="Edit"
+       @click.prevent="parent.formData = item; $refs.new && ($refs.new.active = 1)">
+        <i class="fas fa-edit"></i>
+    </a>
+
+    <a href="#" title="Delete"
+       @click.prevent="parent.formData = item; del()">
+        <i class="fas fa-trash"></i>
+    </a>
+</td>
+
 
                         <td class="id">{{ item.fclicks || 0 }}</td>
                         <td class="id">{{ item.leads || 0 }}</td>
@@ -160,5 +171,6 @@ template: `
 </div>
 `
 };  
+
 
 
