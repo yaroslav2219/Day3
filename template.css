@@ -179,5 +179,86 @@ input:focus {
     border-bottom: 1px solid #eee;
 }
 
+.campaigns-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* TOP BAR */
+.campaigns-top {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    margin: 30px 0 15px;
+}
+
+.top-left {
+    text-align: left;
+}
+
+.top-center {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.top-center input {
+    padding: 5px 8px;
+    font-size: 13px;
+}
+
+.top-right {
+    text-align: right;
+}
+
+.top-right h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.campaigns-table {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.campaigns-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.campaigns-table th {
+    background: #f5f5f5;
+    padding: 10px;
+    font-size: 13px;
+}
+
+.campaigns-table td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.campaigns-table tr:hover {
+    background: #fafafa;
+}
+
+.campaigns-table .id {
+    width: 80px;
+    text-align: center;
+}
+
+.campaigns-table .actions {
+    width: 90px;
+    text-align: center;
+}
+
+.campaigns-table .title {
+    width: auto;
+    font-weight: 500;
+}
+
+.btn-small {
+    padding: 6px 14px;
+    font-size: 13px;
+}
 
 
