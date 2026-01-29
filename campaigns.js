@@ -74,77 +74,94 @@ export const campaigns = {
             }
         },
     },
-    template: `
-    <div class="inside-content">
-    <Header ref="header" />
-    <div id='spinner' v-if="loader"></div>
-    <div class="wrapper">
+ template: `
+<div class="inside-content">
+  <Header ref="header" />
+
+  <div id="spinner" v-if="loader"></div>
+
+  <div class="wrapper">
     <div class="flex panel">
-    <div class="w20 ptb30">
-    <h1>Campaigns</h1>
+
+      <div class="w20 ptb30">
+        <h1>Campaigns</h1>
+      </div>
+
+      <div class="w60 ptb20 ac">
+        <input type="date" v-model="date" @change="get()" />
+        -
+        <input type="date" v-model="date2" @change="get()" />
+      </div>
+
+      <div class="w20 al ptb20"></div>
+
     </div>
-    <div class="w60 ptb20 ac"><input type="date" @change="get()" /> - <input type="date" v-model="date2" @change="get()" />
-    <div class="w20 al ptb20">
-    
+
+    <div class="table" v-if="data.items && data.items.length">
+      <table>
+        <thead>
+          <tr>
+            <th class="id">#</th>
+            <th></th>
+            <th>Title</th>
+            <th class="id">Views</th>
+            <th class="id">Clicks</th>
+            <th class="id">Leads</th>
+            <th class="id">Fraud clicks</th>
+            <th class="actions">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr v-for="(item, index) in data.items" :key="item.id">
+            <td class="id">{{ item.id }}</td>
+            <td></td>
+
+            <td>
+              <router-link :to="'/campaign/' + item.id">
+                {{ item.title }}
+              </router-link>
+            </td>
+
+            <td class="id">
+              <a href="#" @click.prevent="$refs.details.active=1; getDetails(item.id,1)">
+                {{ item.views }}
+              </a>
+            </td>
+
+            <td class="id">
+              <a href="#" @click.prevent="$refs.details.active=1; getDetails(item.id,2)">
+                {{ item.clicks || 0 }}
+              </a>
+            </td>
+
+            <td class="id">
+              <a href="#" @click.prevent="$refs.details.active=1; getDetails(item.id,3)">
+                {{ item.leads || 0 }}
+              </a>
+            </td>
+
+            <td class="id">
+              <a href="#" @click.prevent="$refs.details.active=1; getDetails(item.id,4)">
+                {{ item.fclicks || 0 }}
+              </a>
+            </td>
+
+            <td class="actions">
+              <a href="#" @click.prevent="parent.formData = item; del()">
+                <i class="fas fa-trash-alt"></i>
+              </a>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
     </div>
+
+    <div class="empty" v-else>
+      No items
     </div>
-    
-    <div class="table" v-if="data.items!=''">
-    <table>
-    <thead>
-    <tr>
-    <th class="id">#</th>
-    <th class="id"></th>
-    <th>Title</th>
-    <th class="id">Views</th>
-    <th class="id">Clicks</th>
-    <th class="id">Leads</th>
-    <th class="id">Fraud clicks</th>
-    <th class="actions">Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr v-for="(item, 1) in data items">
-    <td class="id">{{item.id}}</td>
-    <td class="id">
-    
-    </td>
-    <td><router-link :to="'/campaign/+item.id">{{item.title}}</router-link></td>
-    <td class="id">
-    <a href="#" @click.prevent="$refs.details.active=1;getDetails(item.id,1)">
-    {{item.views}}
-    </a>
-    </td>
-    <td class="id">
-    <a href="#" @click.prevent="$refs.details.active=1;getDetails(item.id,2)">
-    <template v-if="item.clicks">{{item.clicks}}</template>
-    <template v-if="!item.clicks">0</template>
-    </a>
-    </td>
-    <td class="id">
-     <a href="#" @click.prevent="$refs.details.active=1;getDetails(item.id,3)">
-     <template v-if="item.leads">{{item.leads}}</template>
-     <template v-if="!item.leads">0</template>
-    </a>
-    </td>
-     <td class="id">
-     <a href="#" @click.prevent="$refs.details.active=1;getDetails(item.id,4)">
-     <template v-if="item.fclicks">{{item.fclicks}}</template>
-     <template v-if="!item.fclicks">0</template>
-    </a>
-    </td>
-    <td class="actions">
-    <a href="#" @click.prevent="parent.formData = item;del();">
-    <i class="fas fa-trash-alt"></i>
-        </a>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-    </div>
-    <div class="empty" v-if="data.items==''">
-    No items
-    </div>
-    </div>
-    </div>
+
+  </div>
+</div>
 `};  
