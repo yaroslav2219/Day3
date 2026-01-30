@@ -68,22 +68,35 @@ data:function() {
                 console.log('errors : ', error);
             });
         },
-        del:async function () {
-            if(await this.$refs.header.$refs.msg.confirmFun("Please confirm next action", "Do you want to delete this campaign?")){
-                var self = this;
-                var data = self.parent.toFormData(self.parent.formData);
+       del: async function () {
 
-                axios.post(this.parent.url+"/site/actionCampaign?auth="+this.parent.user.auth.data).then(function(response){
-                    if(response.data.error){
-                        self.$refs.header.$refs.msg.alertFun(response.data.error);   
-                    }else{
-                    self.$refs.header.$refs.msg.successFun("Successfully deleted campaign!");
-                    self.get();
-                    }
-                }).catch(function(error){
-                    console.log('errors : ', error);
-                });
-            }
+  if (await this.$refs.header.$refs.msg.confirmFun(
+        "Please confirm next action",
+        "Do you want to delete this campaign?"
+  )) {
+
+    var self = this;
+    var data = self.parent.toFormData(self.parent.formData);
+
+    data.append("action","delete");   // надійніше
+
+    axios.post(
+      self.parent.url+"/site/actionCampaign?auth="+self.parent.user.auth.data,
+      data
+    ).then(function(response){
+
+        if(response.data.error){
+            self.$refs.header.$refs.msg.alertFun(response.data.error);
+        }else{
+            self.$refs.header.$refs.msg.successFun("Successfully deleted campaign!");
+            self.get();
+        }
+
+    }).catch(function(error){
+        console.log(error);
+    });
+  }
+}
         },
     },
 template: `
@@ -209,6 +222,7 @@ template: `
 </div>
 `
 };  
+
 
 
 
