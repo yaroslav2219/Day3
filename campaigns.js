@@ -98,7 +98,6 @@ data:function() {
   }
 }
         },
-    },
 template: `
 <div class="inside-content">
 
@@ -222,6 +221,7 @@ template: `
 </div>
 `
 };  
+
 
 
 
