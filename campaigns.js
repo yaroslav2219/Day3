@@ -1,9 +1,15 @@
 export const campaigns = {
-    data:function() {
-        return {
-            parent:"",
-        }
-    },
+data:function() {
+    return {
+        parent: "",
+        data: {
+            items: []   
+        },
+        loader: 0,
+        date: "",
+        date2: ""
+    }
+},
     mounted:function(){
         this.parent = this.$parent.$parent;
 
@@ -151,5 +157,6 @@ export const campaigns = {
     </div>
     </div>
 `};  
+
 
 
