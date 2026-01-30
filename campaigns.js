@@ -104,12 +104,15 @@ export const campaigns = {
     </tr>
     </thead>
     <tbody>
-    <tr v-for="(item, 1) in data items">
+    <tr v-for="(item, index) in data.items" :key="item.id">
     <td class="id">{{item.id}}</td>
     <td class="id">
     
     </td>
-    <td><router-link :to="'/campaign/+item.id">{{item.title}}</router-link></td>
+    <td><router-link :to="'/campaign/' + item.id">
+  {{ item.title }}
+</router-link>
+</td>
     <td class="id">
     <a href="#" @click.prevent="$refs.details.active=1;getDetails(item.id,1)">
     {{item.views}}
@@ -148,3 +151,4 @@ export const campaigns = {
     </div>
     </div>
 `};  
+
