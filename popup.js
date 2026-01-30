@@ -45,36 +45,29 @@ export const popup = {
   },
 
   template: `
-    <template v-if="active === 1">
-      <div class="popup-back"></div>
-
-      <div
-        class="popup"
-        ref="popup"
-        :style="{
-          top: top,
-          maxWidth: widthVal,
-          marginLeft: ml,
-          left: left,
-          height: height
-        }"
-      >
-        <div class="flex head-popup">
-          <div class="w80 ptb20">
-            <div class="head-title">{{ title }}</div>
-          </div>
-
-          <div class="w20 al ptb20">
-            <a href="#" @click.prevent="close">
-              <i class="fas fa-window-close"></i>
-            </a>
-          </div>
+   <template v-if="active === 1">
+  <div class="popup-back">
+    <div class="popup">
+      
+      <div class="flex head-popup">
+        <div class="w80 ptb20">
+          <div class="head-title">{{ title }}</div>
         </div>
 
-        <div class="popup-inner">
-          <slot></slot>
+        <div class="w20 al ptb20">
+          <a href="#" @click.prevent="close">
+            <i class="fas fa-window-close"></i>
+          </a>
         </div>
       </div>
-    </template>
+
+      <div class="popup-inner">
+        <slot></slot>
+      </div>
+
+    </div>
+  </div>
+</template>
   `
 }
+
