@@ -269,10 +269,14 @@ input:focus {
     text-align: center;
 }
 
-.campaigns-table .actions {
-    width: 60px;
-    text-align: center;
+.campaigns-table th.actions,
+.campaigns-table td.actions{
+    width:60px;
+    max-width:60px;
+    min-width:60px;
+    text-align:center;
 }
+
 
 .campaigns-table .title {
     width: auto;
@@ -284,10 +288,11 @@ input:focus {
     font-size: 13px;
 }
 
-.actions {
-    display: flex;
-    justify-content: center;
-    gap: 14px;
+.actions{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
 }
 
 .actions .action {
@@ -308,13 +313,14 @@ input:focus {
     color: #dc2626;
 }
 
-.actions a {
-    color: #6b7280;
-    font-size: 16px;
+.actions a{
+   font-size:16px;
+   color:#6b7280;
+   transition:0.2s;
 }
 
-.actions a:hover {
-    color: #111827;
+.actions a:hover{
+   color:#111827;
 }
 
 
@@ -487,6 +493,7 @@ input:focus {
 .successMsg {
     z-index: 10000;
 }
+
 
 
 
