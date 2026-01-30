@@ -1,15 +1,9 @@
 export const campaigns = {
-data:function() {
-    return {
-        parent: "",
-        data: {
-            items: []
-        },
-        loader: 0,
-        date: "",
-        date2: ""
-    }
-},
+    data:function() {
+        return {
+            parent:"",
+        }
+    },
     mounted:function(){
         this.parent = this.$parent.$parent;
 
@@ -30,12 +24,6 @@ data:function() {
             this.date = firstDayOfMonth.toISOString().substring(0, 10);
             this.date2 = lastDayOfMonth.toISOString().substring(0, 10);
         },
-        logout() {
-        localStorage.removeItem('user');
-        localStorage.removeItem('token');
-
-        this.$router.push('./login');
-    },
         get:function() {
             var self = this;
             var data = self.parent.toFormData(self.parent.formData);
@@ -68,172 +56,95 @@ data:function() {
                 console.log('errors : ', error);
             });
         },
-     del: async function () {
+        del:async function () {
+            if(await this.header.$refs.msg.confirmFun("Please confirm next action", "Do you want to delete this campaign?")){
+                var self = this;
+                var data = self.parent.toFormData(self.parent.formData);
 
-  if (await this.$refs.header.$refs.msg.confirmFun(
-        "Please confirm next action",
-        "Do you want to delete this campaign?"
-  )) {
-
-    var self = this;
-    var data = new FormData();
-
-    data.append("action", "delete");
-    data.append("id", self.parent.formData.id); // 🔑 КЛЮЧ
-
-    console.log("DELETE DATA:", [...data.entries()]); // перевірка
-
-    axios.post(
-      self.parent.url + "/site/actionCampaign?auth=" + self.parent.user.auth.data,
-      data
-    ).then(function(response){
-
-        if(response.data?.error){
-            self.$refs.header.$refs.msg.alertFun(response.data.error);
-        }else{
-            self.$refs.header.$refs.msg.successFun("Successfully deleted campaign!");
-            self.get();
-        }
-
-    }).catch(function(error){
-        console.log(error);
-    });
-  }
-},
-template: `
-<div class="inside-content">
-
-    <Header ref="header"/>
-
-    <div class="wrapper campaigns-wrap">
-
-        <div class="campaigns-top">
-
-<nav class="top-nav">
-    <div class="nav-left">
-        <a href="#" class="nav-btn logout" @click.prevent="logout">
-            <i class="fas fa-sign-out-alt"></i> Logout
-        </a>
+                axios.post(this.parent.url+"/site/actionCampaign?auth="+this.parent.user.auth.data).then(function(response){
+                    if(response.data.error){
+                        self.$refs.header.$refs.msg.alertFun(response.data.error);   
+                    }else{
+                    self.$refs.header.$refs.msg.successFun("Successfully deleted campaign!");
+                    self.get();
+                    }
+                }).catch(function(error){
+                    console.log('errors : ', error);
+                });
+            }
+        },
+    },
+    template: `
+    <div class="inside-content">
+    <Header ref="header" />
+    <div id='spinner' v-if="loader"></div>
+    <div class="wrapper">
+    <div class="flex panel">
+    <div class="w20 ptb30">
+    <h1>Campaigns</h1>
     </div>
-
-    <div class="nav-center">
-        <a href="#/users"
-           class="nav-link"
-           :class="{ active: $route.path.includes('users') }">
-            Users
-        </a>
-
-        <a href="#/campaigns"
-           class="nav-link"
-           :class="{ active: $route.path.includes('campaigns') }">
-            Campaigns
-        </a>
+    <div class="w60 ptb20 ac"><input type="date" @change="get()" /> - <input type="date" v-model="date2" @change="get()" />
+    <div class="w20 al ptb20">
+    
     </div>
-
-    <div class="nav-right">
-        <img src="./favicon.ico" alt="Logo" class="logo">
     </div>
-</nav>
-
-            <div class="top-left">
-                <button class="btn btn-small" @click="$refs.new && ($refs.new.active=1)">
-                    + New
-                </button>
-            </div>
-
-            <div class="top-center">
-                <input type="date" v-model="date" @change="get()">
-                <span>—</span>
-                <input type="date" v-model="date2" @change="get()">
-            </div>
-
-            <div class="top-right">
-                <h1>Campaigns</h1>
-            </div>
-
-        </div>
-
-        <div class="table campaigns-table" v-if="data.items.length">
-
-            <table>
-                <thead>
-                    <tr>
-                        <th class="actions">Actions</th>
-                        <th class="id">Fraud</th>
-                        <th class="id">Leads</th>
-                        <th class="id">Clicks</th>
-                        <th class="id">Views</th>
-                        <th class="title">Title</th>
-                        <th class="id">#</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr v-for="item in data.items" :key="item.id">
-
-                    <td class="actions">
-    <a href="#"
-       class="action stats"
-       title="Statistics"
-       @click.prevent="$router.push('/campaign/' + item.id)">
-        <i class="fa-solid fa-chart-line"></i>
+    
+    <div class="table" v-if="data.items!=''">
+    <table>
+    <thead>
+    <tr>
+    <th class="id">#</th>
+    <th class="id"></th>
+    <th>Title</th>
+    <th class="id">Views</th>
+    <th class="id">Clicks</th>
+    <th class="id">Leads</th>
+    <th class="id">Fraud clicks</th>
+    <th class="actions">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr v-for="(item, 1) in data items">
+    <td class="id">{{item.id}}</td>
+    <td class="id">
+    
+    </td>
+    <td><router-link :to="'/campaign/+item.id">{{item.title}}</router-link></td>
+    <td class="id">
+    <a href="#" @click.prevent="$refs.details.active=1;getDetails(item.id,1)">
+    {{item.views}}
     </a>
-
-    <a href="#"
-       class="action edit"
-       title="Edit"
-       @click.prevent="parent.formData = item; $refs.new && ($refs.new.active = 1)">
-        <i class="fa-solid fa-pen-to-square"></i>
+    </td>
+    <td class="id">
+    <a href="#" @click.prevent="$refs.details.active=1;getDetails(item.id,2)">
+    <template v-if="item.clicks">{{item.clicks}}</template>
+    <template v-if="!item.clicks">0</template>
     </a>
-
-    <a href="#"
-       class="action delete"
-       title="Delete"
-       @click.prevent="parent.formData = item; del()">
-        <i class="fa-solid fa-trash"></i>
+    </td>
+    <td class="id">
+     <a href="#" @click.prevent="$refs.details.active=1;getDetails(item.id,3)">
+     <template v-if="item.leads">{{item.leads}}</template>
+     <template v-if="!item.leads">0</template>
     </a>
-</td>
-
-
-
-                        <td class="id">{{ item.fclicks || 0 }}</td>
-                        <td class="id">{{ item.leads || 0 }}</td>
-                        <td class="id">{{ item.clicks || 0 }}</td>
-                        <td class="id">{{ item.views || 0 }}</td>
-
-                        <td class="title">
-                            <router-link :to="'/campaign/' + item.id">
-                                {{ item.title }}
-                            </router-link>
-                        </td>
-
-                        <td class="id">{{ item.id }}</td>
-
-                    </tr>
-                </tbody>
-            </table>
-
-        </div>
-
-        <div class="empty" v-else>
-            No campaigns
-        </div>
-
+    </td>
+     <td class="id">
+     <a href="#" @click.prevent="$refs.details.active=1;getDetails(item.id,4)">
+     <template v-if="item.fclicks">{{item.fclicks}}</template>
+     <template v-if="!item.fclicks">0</template>
+    </a>
+    </td>
+    <td class="actions">
+    <a href="#" @click.prevent="parent.formData = item;del();">
+    <i class="fas fa-trash-alt"></i>
+        </a>
+    </td>
+    </tr>
+    </tbody>
+    </table>
     </div>
-</div>
-`
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <div class="empty" v-if="data.items==''">
+    No items
+    </div>
+    </div>
+    </div>
+`};  
