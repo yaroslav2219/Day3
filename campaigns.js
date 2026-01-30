@@ -157,22 +157,29 @@ template: `
                 <tbody>
                     <tr v-for="item in data.items" :key="item.id">
 
-                       <td class="actions">
-    <a href="#" title="Statistics"
+                    <td class="actions">
+    <a href="#"
+       class="action stats"
+       title="Statistics"
        @click.prevent="$router.push('/campaign/' + item.id)">
-        <i class="fas fa-chart-line"></i>
+        <i class="fa-solid fa-chart-line"></i>
     </a>
 
-    <a href="#" title="Edit"
+    <a href="#"
+       class="action edit"
+       title="Edit"
        @click.prevent="parent.formData = item; $refs.new && ($refs.new.active = 1)">
-        <i class="fas fa-edit"></i>
+        <i class="fa-solid fa-pen-to-square"></i>
     </a>
 
-    <a href="#" title="Delete"
+    <a href="#"
+       class="action delete"
+       title="Delete"
        @click.prevent="parent.formData = item; del()">
-        <i class="fas fa-trash"></i>
+        <i class="fa-solid fa-trash"></i>
     </a>
 </td>
+
 
 
                         <td class="id">{{ item.fclicks || 0 }}</td>
@@ -202,6 +209,7 @@ template: `
 </div>
 `
 };  
+
 
 
 
