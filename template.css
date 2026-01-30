@@ -174,7 +174,6 @@ input:focus { border-color: #00c26f; }
     font-weight: bold;
 }
 
-/* Кнопка закриття */
 .head-popup a {
     color: #fff;
     font-size: 18px;
@@ -183,6 +182,42 @@ input:focus { border-color: #00c26f; }
 .head-popup a:hover {
     color: #ff4b5c;
 }
+
+.popup-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 14px 18px;
+    border-top: 1px solid #eee;
+}
+
+.popup-actions button {
+    font-size: 13px;
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    transition: background .2s, color .2s;
+}
+
+.btn-cancel {
+    background: #f2f2f2;
+    color: #333;
+}
+
+.btn-cancel:hover {
+    background: #e5e5e5;
+}
+
+.btn-danger {
+    background: #e53935;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background: #d32f2f;
+}
+
 
 .popup-inner {
     padding: 20px;
@@ -199,6 +234,7 @@ input:focus { border-color: #00c26f; }
         max-width: 90%;
     }
 }
+
 
 
 
