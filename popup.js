@@ -6,12 +6,7 @@ export const popup = {
 
   data() {
     return {
-      active: 0,
-      top: 0,
-      widthVal: '500px',
-      ml: '-250px',
-      left: '50%',
-      height: 'auto'
+      active: 0
     }
   },
 
@@ -70,4 +65,5 @@ export const popup = {
 </template>
   `
 }
+
 
