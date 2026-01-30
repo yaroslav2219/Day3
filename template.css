@@ -462,6 +462,11 @@ input:focus {
     to   { transform: scale(1); opacity: 1; }
 }
 
+.confirm-overlay,
+.alertMsg,
+.successMsg {
+    z-index: 10000;
+}
 
 
 
