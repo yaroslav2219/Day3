@@ -139,6 +139,23 @@ template: `
 
         </div>
 
+        <div class="confirm-overlay" v-if="confirmActive">
+    <div class="confirm-box">
+        <div class="confirm-title">{{ confirmTitle }}</div>
+        <div class="confirm-text">{{ confirm }}</div>
+
+        <div class="confirm-actions">
+            <button class="confirm-btn cancel" @click="cancel">
+                Cancel
+            </button>
+            <button class="confirm-btn ok" @click="ok">
+                Delete
+            </button>
+        </div>
+    </div>
+</div>
+
+
         <div class="table campaigns-table" v-if="data.items.length">
 
             <table>
@@ -209,6 +226,7 @@ template: `
 </div>
 `
 };  
+
 
 
 
