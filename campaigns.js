@@ -68,7 +68,7 @@ data:function() {
                 console.log('errors : ', error);
             });
         },
-       del: async function () {
+     del: async function () {
 
   if (await this.$refs.header.$refs.msg.confirmFun(
         "Please confirm next action",
@@ -76,16 +76,19 @@ data:function() {
   )) {
 
     var self = this;
-    var data = self.parent.toFormData(self.parent.formData);
+    var data = new FormData();
 
-    data.append("action","delete");   // надійніше
+    data.append("action", "delete");
+    data.append("id", self.parent.formData.id); // 🔑 КЛЮЧ
+
+    console.log("DELETE DATA:", [...data.entries()]); // перевірка
 
     axios.post(
-      self.parent.url+"/site/actionCampaign?auth="+self.parent.user.auth.data,
+      self.parent.url + "/site/actionCampaign?auth=" + self.parent.user.auth.data,
       data
     ).then(function(response){
 
-        if(response.data.error){
+        if(response.data?.error){
             self.$refs.header.$refs.msg.alertFun(response.data.error);
         }else{
             self.$refs.header.$refs.msg.successFun("Successfully deleted campaign!");
@@ -96,8 +99,7 @@ data:function() {
         console.log(error);
     });
   }
-}
-        },
+},
 template: `
 <div class="inside-content">
 
@@ -221,6 +223,7 @@ template: `
 </div>
 `
 };  
+
 
 
 
