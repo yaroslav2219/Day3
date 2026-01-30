@@ -1,74 +1,51 @@
 export const popup = {
   props: {
-    title: String,
-    fullscreen: Boolean
+    title: {
+      type: String,
+      default: ''
+    },
+    fullscreen: {
+      type: Boolean,
+      default: false
+    }
   },
 
   data() {
     return {
-      active: 0,
-      top: 0,
-      widthVal: '500px',
-      ml: '-250px',
-      left: '50%',
-      height: 'auto'
-    }
-  },
-
-  watch: {
-    active(val) {
-      if (val === 1 && !this.fullscreen) {
-        this.$nextTick(() => {
-          const h = this.$refs.popup.clientHeight / 2
-          this.top = `calc(50% - ${h}px)`
-        })
-      }
-
-      if (this.fullscreen) {
-        this.setFullscreen()
-      }
+      active: false
     }
   },
 
   methods: {
-    setFullscreen() {
-      this.top = 0
-      this.left = 0
-      this.ml = 0
-      this.widthVal = '100%'
-      this.height = '100%'
+    open() {
+      this.active = true
+      document.body.style.overflow = 'hidden'
     },
 
     close() {
-      this.active = 0
+      this.active = false
+      document.body.style.overflow = ''
+    },
+
+    confirm() {
+      this.$emit('confirm')
+      this.close()
     }
   },
 
   template: `
-    <template v-if="active === 1">
-      <div class="popup-back"></div>
+    <template v-if="active">
+      <!-- overlay -->
+      <div class="popup-back" @click="close"></div>
 
-      <div
-        class="popup"
-        ref="popup"
-        :style="{
-          top: top,
-          maxWidth: widthVal,
-          marginLeft: ml,
-          left: left,
-          height: height
-        }"
-      >
-        <div class="flex head-popup">
-          <div class="w80 ptb20">
-            <div class="head-title">{{ title }}</div>
-          </div>
+      <!-- popup -->
+      <div class="popup">
+        <div class="head-popup">
+          <div class="head-title">{{ title }}</div>
 
-          <div class="w20 al ptb20">
-            <a href="#" @click.prevent="close">
-              <i class="fas fa-window-close"></i>
-            </a>
-          </div>
+          <a href="#" class="popup-close" @click.prevent="close">
+            <i class="fas fa-times"></i>
+          </a>
         </div>
 
         <div class="popup-inner">
