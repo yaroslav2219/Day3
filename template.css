@@ -393,6 +393,10 @@ input:focus {
     text-align: center;
 }
 
+.confirm-body{
+   text-align:center;
+}
+
 .confirm-overlay {
     position: fixed;
     inset: 0;
@@ -457,6 +461,22 @@ input:focus {
     background: #b91c1c;
 }
 
+.botBtns{
+   margin-top:20px;
+   display:flex;
+   justify-content:center;
+   gap:12px;
+}
+
+.btn.danger{
+   background:#dc2626;
+   color:white;
+}
+
+.btn.cancel{
+   background:#e5e7eb;
+}
+
 @keyframes scaleIn {
     from { transform: scale(.9); opacity: 0; }
     to   { transform: scale(1); opacity: 1; }
@@ -467,6 +487,7 @@ input:focus {
 .successMsg {
     z-index: 10000;
 }
+
 
 
 
