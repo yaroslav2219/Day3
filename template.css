@@ -270,7 +270,7 @@ input:focus {
 }
 
 .campaigns-table .actions {
-    width: 90px;
+    width: 70px;
     text-align: center;
 }
 
@@ -392,6 +392,7 @@ input:focus {
 .campaigns-table th.actions {
     text-align: center;
 }
+
 
 
 
