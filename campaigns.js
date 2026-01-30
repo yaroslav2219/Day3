@@ -136,11 +136,11 @@ export const campaigns = {
      <template v-if="!item.fclicks">0</template>
     </a>
     </td>
-    <td class="actions">
-    <a href="#" @click.prevent="parent.formData = item;del();">
-    <i class="fas fa-trash-alt"></i>
-        </a>
-    </td>
+   <td class="actions">
+    <a href="#" @click.prevent="parent.formData = { ...item }; del()">
+      <i class="fas fa-trash-alt"></i>
+    </a>
+  </td>
     </tr>
     </tbody>
     </table>
@@ -151,4 +151,5 @@ export const campaigns = {
     </div>
     </div>
 `};  
+
 
