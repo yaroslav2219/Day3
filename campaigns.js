@@ -117,7 +117,7 @@ template: `
     </div>
 
     <div class="nav-right">
-        <img src="img/logo.png" alt="Logo" class="logo">
+        <img src="./favicon.ico" alt="Logo" class="logo">
     </div>
 </nav>
 
@@ -202,6 +202,7 @@ template: `
 </div>
 `
 };  
+
 
 
 
