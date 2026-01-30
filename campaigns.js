@@ -222,7 +222,8 @@ template: `
     </div>
 </div>
 `
-};  
+}
+
 
 
 
