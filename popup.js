@@ -10,21 +10,6 @@ export const popup = {
     }
   },
 
-  watch: {
-    active(val) {
-      if (val === 1 && !this.fullscreen) {
-        this.$nextTick(() => {
-          const h = this.$refs.popup.clientHeight / 2
-          this.top = `calc(50% - ${h}px)`
-        })
-      }
-
-      if (this.fullscreen) {
-        this.setFullscreen()
-      }
-    }
-  },
-
   methods: {
     setFullscreen() {
       this.top = 0
@@ -65,5 +50,6 @@ export const popup = {
 </template>
   `
 }
+
 
 
