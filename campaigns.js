@@ -63,7 +63,7 @@ data:function() {
             });
         },
         del:async function () {
-            if(await this.header.$refs.msg.confirmFun("Please confirm next action", "Do you want to delete this campaign?")){
+            if(await this.$refs.header.$refs.msg.confirmFun("Please confirm next action", "Do you want to delete this campaign?")){
                 var self = this;
                 var data = self.parent.toFormData(self.parent.formData);
 
@@ -157,6 +157,7 @@ data:function() {
     </div>
     </div>
 `};  
+
 
 
 
