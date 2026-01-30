@@ -270,7 +270,7 @@ input:focus {
 }
 
 .campaigns-table .actions {
-    width: 110px;
+    width: 90px;
     text-align: center;
 }
 
@@ -288,6 +288,24 @@ input:focus {
     display: flex;
     justify-content: center;
     gap: 14px;
+}
+
+.actions .action {
+    font-size: 15px;
+    color: #6b7280;
+    transition: color .2s ease, transform .15s ease;
+}
+
+.actions .action:hover {
+    transform: translateY(-1px);
+}
+
+.actions .edit:hover {
+    color: #2563eb;
+}
+
+.actions .delete:hover {
+    color: #dc2626;
 }
 
 .actions a {
@@ -365,10 +383,16 @@ input:focus {
     color: #ff5c5c;
 }
 
-.logo {
-    height: 34px;
+.nav-logo {
+    width: 28px;
+    height: 28px;
     object-fit: contain;
+    filter: brightness(0) invert(1); /* якщо favicon темний */
 }
+.campaigns-table th.actions {
+    text-align: center;
+}
+
 
 
 
